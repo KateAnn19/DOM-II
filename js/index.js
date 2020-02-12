@@ -1,9 +1,11 @@
 // Your code goes here
 
-
+//--------------------------------------------------------------------------------
 //this is how you import libraries
 //import gsap
-import {gsap} from 'gsap';
+// import {gsap} from 'gsap';
+//this didn't work so we changed it and added the CDN into the HTML
+//-----------------------------------------------------------------------------------
 
 
 //-----------------------------------------------------------
@@ -20,7 +22,7 @@ funBusMiniHeading.addEventListener('mouseenter', () => {
     funBusMiniHeading.style.transform = 'scale(1.6)';
     funBusMiniHeading.style.color = "red";
     funBusMiniHeading.innerText = "Hipster Bus."
-
+    funBusMiniHeading.style.fontFamily = "Impact,Charcoal,sans-serif";
 });
 
 //------------------------------------------------------
@@ -31,14 +33,14 @@ funBusMiniHeading.addEventListener('mouseleave', () => {
     funBusMiniHeading.style.transform = 'scale(1)';
     funBusMiniHeading.style.color = "black";
     funBusMiniHeading.innerText = "Fun Bus!";
+    funBusMiniHeading.style.fontFamily = 'Indie Flower,cursive';
 })
 //-------------------------------------------------------
-//click (3) using foreEach      
+//click (3) using forEach      
 //selecting all the h2's on the page and turning them blue 
 //---------------------------------------------------------
 let h2Headings = document.querySelectorAll('h2');
-
-h2Headings.forEach(el => {
+        h2Headings.forEach(el => {
         el.addEventListener('click', function(){
         el.style.color = 'blue';
     })
@@ -53,7 +55,6 @@ h2Headings.forEach(el => {
 
 let firstBusImage = document.querySelector('img').src;
 let image_tracker = 'bus1';
-
 let busImage = document.querySelector('img');
 
 busImage.addEventListener('dblclick', function(){
@@ -98,9 +99,9 @@ let thirdButton = document.getElementsByClassName('btn')[2];
 console.log(firstButton);
 console.log(secondButton);
 
-//---------------------------------------------------------------------
-//this uses preventDefault
-//---------------------------------------------------------------------
+
+//this uses preventDefault so alert happens on button
+
 
 firstButton.addEventListener('click', clickHandler = (e) => {
     e.preventDefault();
@@ -111,33 +112,49 @@ firstButton.addEventListener('click', clickHandler = (e) => {
 secondButton.style.border = '2px red dashed';
 thirdButton.style.border = '2px purple dashed';
 //------------------------------------------------------------------
-//(7)
+//mouseEnter (7) container color changes
 //------------------------------------------------------------------
 
-const body = document.querySelector('body');
-
-body.addEventListener('mouseenter', () => {
-    body.style.backgroundColor="chartreuse";
-    body.style.color="coral";
+const containerEle = document.querySelector('.home');
+containerEle.addEventListener('mouseenter', () => {
+    containerEle.style.backgroundColor="chartreuse";
+    containerEle.style.color="white";
     
 });
 
 
 //------------------------------------------------------------------
-//(8)
+//mouseleave (8) container color changes back
 //------------------------------------------------------------------
 
-body.addEventListener('mouseleave', () => {
-    body.style.backgroundColor="white";
-    body.style.color="black";
+containerEle.addEventListener('mouseleave', () => {
+    containerEle.style.backgroundColor="white";
+    containerEle.style.color="black";
 })
 
 
 //------------------------------------------------------------------
-//(9)
+//click (9) on body changing color to purple
 //------------------------------------------------------------------
 
 //------------------------------------------------------------------
-//(10)
+//click (10) on container changing color to hotpink with click
 //------------------------------------------------------------------
 
+//----------------------------------------------------------------
+//stopping propogation
+//-----------------------------------------------------------------
+
+let body = document.querySelector('body');
+
+body.addEventListener('click', () => {
+    body.style.backgroundColor="purple";
+    console.log('Me last');
+});
+
+let secondContainerEle = document.getElementsByClassName('container')[1];
+secondContainerEle.addEventListener('click', (event) => {
+    secondContainerEle.style.backgroundColor = "hotpink";
+    event.stopPropagation();
+    console.log('here');
+})
